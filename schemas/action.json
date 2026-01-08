@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Action",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": [
+        "click",
+        "type",
+        "press",
+        "navigate",
+        "wait_for",
+        "scroll",
+        "open_app",
+        "focus_window",
+        "run_shell",
+        "gemini_query",
+        "mcp_call"
+      ]
+    },
+    "params": {
+      "type": "object",
+      "description": "Action-specific parameters"
+    },
+    "gemini_config": {
+      "type": "object",
+      "description": "Configuration for Google Gemini API integration",
+      "properties": {
+        "model": {
+          "type": "string",
+          "enum": ["gemini-2.0-flash-exp", "gemini-1.5-pro", "gemini-1.5-flash"],
+          "default": "gemini-2.0-flash-exp"
+        },
+        "multimodal": {
+          "type": "boolean",
+          "default": true
+        },
+        "tools": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "mcp_config": {
+      "type": "object",
+      "description": "Model Context Protocol configuration",
+      "properties": {
+        "server_name": { "type": "string" },
+        "tool_name": { "type": "string" },
+        "arguments": { "type": "object" }
+      }
+    }
+  },
+  "required": ["kind", "params"]
+}
