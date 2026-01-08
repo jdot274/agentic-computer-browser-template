@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UIDiff",
+  "type": "object",
+  "properties": {
+    "base_screen_id": { "type": "string" },
+    "screen_id": { "type": "string" },
+    "added": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "role": { "type": "string" },
+          "text": { "type": "string" },
+          "value": { "type": ["string", "null"] },
+          "region": { "type": ["string", "null"] },
+          "visible": { "type": "boolean" },
+          "bounding_box": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "width": { "type": "number" },
+              "height": { "type": "number" }
+            },
+            "required": ["x", "y", "width", "height"]
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["id", "role", "text", "visible", "bounding_box"]
+      }
+    },
+    "removed": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "updated": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "changes": { "type": "object" }
+        },
+        "required": ["id", "changes"]
+      }
+    }
+  },
+  "required": ["base_screen_id", "screen_id", "added", "removed", "updated"]
+}
