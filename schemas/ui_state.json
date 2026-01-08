@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UIState",
+  "type": "object",
+  "properties": {
+    "screen_id": { "type": "string" },
+    "url": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "elements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "role": { "type": "string" },
+          "text": { "type": "string" },
+          "value": { "type": ["string", "null"] },
+          "region": { "type": ["string", "null"] },
+          "visible": { "type": "boolean" },
+          "bounding_box": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "width": { "type": "number" },
+              "height": { "type": "number" }
+            },
+            "required": ["x", "y", "width", "height"]
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["id", "role", "text", "visible", "bounding_box"]
+      }
+    }
+  },
+  "required": ["screen_id", "timestamp", "elements"]
+}
